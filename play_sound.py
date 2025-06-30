@@ -1,12 +1,14 @@
 import sounddevice as sd
 from typing import TypedDict
+
+
 class PlaySound:
-    def __init__(self, output_device_name= "CABLE Input") -> None:
+    def __init__(self, output_device_name="CABLE Input") -> None:
         # 指定された出力デバイス名に基づいてデバイスIDを取得
         output_device_id = self._search_output_device_id(output_device_name)
         # 入力デバイスIDは使用しないため、デフォルトの0を設定
         input_device_id = 0
-        # デフォルトのデバイス設定を更新
+        # デフォルトのデバイス設定を更新（[入力, 出力]の順）
         sd.default.device = [input_device_id, output_device_id]
 
     def _search_output_device_id(self, output_device_name, output_device_host_api=0) -> int:
@@ -26,9 +28,8 @@ class PlaySound:
             print("output_deviceが見つかりませんでした")
             exit()
         return output_device_id
+
     def play_sound(self, data, rate) -> bool:
-        # 音声データを再生
         sd.play(data, rate)
-        # 再生が完了するまで待機
         sd.wait()
         return True

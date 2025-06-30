@@ -1,7 +1,28 @@
-# AITuber Python Programming Example
+## 既存プロジェクトのパッケージ更新手順
 
-このリポジトリは「AITuberを作ってみたら生成AIプログラミングがよくわかった件」で紹介された、YouTubeライブ配信のコメントをAIキャラクターが読み上げて返答するサンプルプログラムです。
+1. 仮想環境を有効化
 
+Linux/macOS:
+```
+source venv/bin/activate
+```
+Windows:
+```
+venv\Scripts\activate
+```
+
+2. 必要なパッケージをインストール・更新
+
+```
+pip install -r requirements.txt
+```
+
+3. もし新しいパッケージを追加した場合、requirements.txt を最新化
+
+```
+pip freeze > requirements.txt
+```
+## 以下参考
 ## 概要
 
 YouTubeライブのコメントを取得し、OpenAIのAPIでAIキャラクター（蛍）が返答を生成し、VOICEVOXで音声合成、OBSで配信画面に表示、音声を再生する一連の流れを自動化します。
@@ -69,6 +90,35 @@ python run.py
 - 音声出力デバイス名（デフォルト: "CABLE Input"）は環境に合わせて`play_sound.py`で変更可能です。
 - キャラクター設定は`system_prompt.txt`で編集できます。
 
+## 初期セットアップ手順（推奨）
+
+1. Pythonバージョン管理ツール [pyenv](https://github.com/pyenv/pyenv) をインストール
+2. プロジェクトディレクトリでPythonバージョンを指定
+
+```
+pyenv local 3.11.5
+```
+
+3. 仮想環境を作成
+
+```
+python3 -m venv venv
+```
+
+4. 仮想環境を有効化
+
+```
+source venv/bin/activate
+```
+
+5. 必要なパッケージをインストール
+
+```
+pip install -r requirements.txt
+```
+
+
+
 ## ライセンス・画像について
 
 配信用画像は日経クロステックの該当記事（nkbpで始まるURL）を参照してください。
@@ -76,3 +126,6 @@ python run.py
 ---
 
 ご質問・不具合はIssue等でご連絡ください。
+
+## 参考URL
+[LangChain Docs](https://python.langchain.com/docs/introduction/)
